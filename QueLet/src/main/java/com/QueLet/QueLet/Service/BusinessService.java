@@ -1,37 +1,39 @@
 package com.QueLet.QueLet.Service;
 
+import com.QueLet.QueLet.Model.Business;
 import com.QueLet.QueLet.Model.Customer;
+import com.QueLet.QueLet.Repository.BusinessRepository;
 import com.QueLet.QueLet.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
-public class CustomerService {
+public class BusinessService {
     @Autowired
-    private CustomerRepository customerRepository;
+    private BusinessRepository businessRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
 
-    public Customer save(Customer user) {
+    public Business save(Business user) {
         if (user.getPassword() == null || user.getPassword().isEmpty()) {
             throw new IllegalArgumentException("password cannot be null or empty");
         }
-        Optional<Customer> existingUser = customerRepository.findByUsername(user.getUsername());
+        Optional<Business> existingUser = businessRepository.findByUsername(user.getUsername());
 
         if (existingUser.isPresent()) {
             throw new IllegalArgumentException("username already taken");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return customerRepository.save(user);
+        return businessRepository.save(user);
     }
 
-    public List<Customer> AllUser() {
-        return customerRepository.findAll();
+    public List<Business> AllBusiness() {
+        return businessRepository.findAll();
     }
 }
+
+
