@@ -1,6 +1,7 @@
 package com.QueLet.QueLet.Service;
 
 import com.QueLet.QueLet.Model.Business;
+import com.QueLet.QueLet.Model.CategoryType;
 import com.QueLet.QueLet.Model.Customer;
 import com.QueLet.QueLet.Repository.BusinessRepository;
 import com.QueLet.QueLet.Repository.CustomerRepository;
@@ -33,6 +34,10 @@ public class BusinessService {
 
     public List<Business> AllBusiness() {
         return businessRepository.findAll();
+    }
+    public List<Business> getBusinessType(CategoryType categoryType){
+        List<Business> businessList = businessRepository.findByTypeOfBusiness(categoryType);
+        return businessList;
     }
 }
 

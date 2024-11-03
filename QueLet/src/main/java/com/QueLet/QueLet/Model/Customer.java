@@ -1,10 +1,7 @@
 package com.QueLet.QueLet.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,11 +19,19 @@ public class Customer implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
+    @NonNull
     private String username;
+    @NonNull
     private String password;
     private String confirmPassword;
     private String email;
     private String mobNo;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Appointment> appointments;
+
+    public Customer(Long user_id) {
+        this.user_id=user_id;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
