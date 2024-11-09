@@ -39,6 +39,25 @@ public class BusinessService {
         List<Business> businessList = businessRepository.findByTypeOfBusiness(categoryType);
         return businessList;
     }
+
+    public Business UpdateBusiness(Long businessId, Business updatedbusiness) {
+        Optional<Business> existingBusiness= businessRepository.findById(businessId);
+
+        if (existingBusiness.isPresent()) {
+            Business modifyBusiness = existingBusiness.get();
+            modifyBusiness.setBusinessName(updatedbusiness.getBusinessName());
+            modifyBusiness.setTypeOfBusiness(updatedbusiness.getTypeOfBusiness());
+            modifyBusiness.setEmail(updatedbusiness.getEmail());
+            modifyBusiness.setPassword(updatedbusiness.getPassword());
+            modifyBusiness.setDescription(updatedbusiness.getDescription());
+            modifyBusiness.setTimings(updatedbusiness.getTimings());
+            modifyBusiness.setSeatsAvailable(updatedbusiness.getSeatsAvailable());
+
+            return businessRepository.save(modifyBusiness);
+        } else {
+            throw new RuntimeException("Business not found with ID: " + businessId);
+        }
+    }
 }
 
 

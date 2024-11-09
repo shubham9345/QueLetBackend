@@ -11,5 +11,6 @@ import java.util.List;
 public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
     @Query("SELECT a FROM Appointment a WHERE a.business.id = :businessId")
     List<Appointment> findByBusinessId(Long businessId);
+    Appointment findByid(Long id);
 
 }
