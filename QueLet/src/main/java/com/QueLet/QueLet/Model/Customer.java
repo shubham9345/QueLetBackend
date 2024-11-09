@@ -1,5 +1,6 @@
 package com.QueLet.QueLet.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,6 +28,7 @@ public class Customer implements UserDetails {
     private String email;
     private String mobNo;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private List<Appointment> appointments;
 
     public Customer(Long user_id) {

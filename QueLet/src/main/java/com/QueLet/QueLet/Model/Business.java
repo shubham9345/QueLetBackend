@@ -1,5 +1,6 @@
 package com.QueLet.QueLet.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,7 +32,9 @@ public class Business implements UserDetails {
     private List<String> timings;
     private String url;
     @OneToMany(mappedBy = "business")
+    @JsonBackReference
     private List<Appointment> appointments;
+    private int seatsAvailable;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
