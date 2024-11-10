@@ -33,7 +33,7 @@ public class Business implements UserDetails {
     private List<String> timings;
     private String url;
     @OneToMany(mappedBy = "business")
-   // @JsonBackReference
+    //@JsonBackReference
     @JsonIgnore
     private List<Appointment> appointments;
     private int seatsAvailable;
