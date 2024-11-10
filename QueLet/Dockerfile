@@ -5,7 +5,7 @@ FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /QueLet
 
 # Copy the pom.xml and download dependencies
-COPY pom.xml .
+COPY /QueLet/pom.xml .
 RUN mvn dependency:go-offline -B
 
 # Copy the entire project and build it
