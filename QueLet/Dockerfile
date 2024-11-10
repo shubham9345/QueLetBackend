@@ -19,7 +19,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /QueLet
 
 # Copy the built JAR file from the build stage
-COPY --from=build /QueLet/target/spring-boot-docker.jar
+COPY --from=build /QueLet/target/spring-boot-docker.jar /QueLet/spring-boot-docker.jar
 
 # Expose the application port (if using a different port, update accordingly)
 EXPOSE 8080
