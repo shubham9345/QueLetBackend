@@ -9,7 +9,7 @@ COPY /QueLet/pom.xml .
 RUN mvn dependency:go-offline -B
 
 # Copy the entire project and build it
-COPY . .
+COPY ./QueLet .
 RUN mvn clean package -DskipTests
 
 # Use a smaller JDK image for the runtime environment
